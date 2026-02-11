@@ -17,7 +17,7 @@ ResuBoost is an AI-powered resume analyzer that scores resumes, identifies missi
 -**Deployment:** Render
 
 # How to run locally?
-1.Clone the repository or use the command below in terminal.
+1.Clone the repository or use this command in terminal.
 ```git clone https://github.com/keerthi-siddigari/AI_ResumeScanner.git```
 
 2.Navigate to the project file.
