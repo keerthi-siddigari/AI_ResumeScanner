@@ -1,0 +1,531 @@
+body{
+    background-color:#e3e7e7 ;
+}
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    background-color: rgba(47, 47, 236, 0.521); 
+    border-radius: 10px;
+    height: 68px;
+}
+.logo-container {
+    margin-left: 10px;
+    display: flex;
+    align-items: center; /* vertically center text with logo */
+    gap: 10px;
+}
+.logo{
+    height: 65px;
+    width: 70px;
+    border-radius: 50%;
+}
+.navbar h1{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.navbar-items{
+    display: flex;
+    align-items: center;
+    font-size: larger;
+    padding-right: 2rem;
+    gap: 1rem;
+    list-style: none;
+    font-family:Arial, Helvetica, sans-serif;
+}
+.navbar-items a{
+    color: black;
+    text-decoration: none;
+    position: relative;
+    padding: 0.5rem 0;
+}
+.navbar-items a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;            /* aligns with bottom of navbar */
+    height: 3px;           /* thickness of underline */
+    width: 0;              /* initially hidden */
+    background-color: rgb(216, 215, 215); /* line color */
+    transition: width 0.3s ease;
+}
+.navbar-items a:hover::after,
+.navbar-items a:focus::after {
+    width: 100%;
+    font-weight: 800;
+
+}
+
+.results h1,h3{
+   text-align:center;
+   font-family:Arial, Helvetica, sans-serif;
+}
+.cards-container{
+    width: 100%;
+    max-width: 1200px;
+    padding: 10px;
+   margin: auto;
+   display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.eachCard{
+    padding:0px  15px 15px;
+    border: 2px solid none;
+    border-radius: 20px;
+    background-color: rgb(247, 245, 245);
+    box-shadow:5px 5px 16px rgba(128, 128, 128, 0.61) ;
+    margin-bottom: 8px;
+}
+.eachCard:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 15px 20px gray;
+    border: 3px solid #0b398a;
+}
+
+    
+.circular-progress {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  position: relative;
+  background: white; /* inner circle stays white */
+  /* dynamic border using conic gradient */
+  background: conic-gradient(
+    #4b7fd8 calc(var(--score) * 1%),  /* filled portion in blue */
+    #e0e0e0 0%                         /* remaining portion in light gray */
+  );
+
+}
+.circular-progress {
+    --score: 0; /* ensure default 0% if JS fails */
+}
+.circular-progress::after {
+  content: '';
+  position: absolute;
+  width: 140px;  /* slightly smaller than the parent */
+  height: 140px;
+  border-radius: 50%;
+  background: white; /* keeps the inner area white */
+}
+.circular-progress span {
+  position: relative;
+  z-index: 2; /* make sure score is above the inner circle */
+}
+
+  
+.scoreCard{
+    display: flex;
+    justify-content:space-evenly;
+    align-items:center;
+    gap: 20px;
+}
+.matchScoreCard {
+    grid-column: span 2;
+}
+.score-info small{
+    font-size: 18px;
+    font-weight: 700;
+    padding: 9px;
+    border:none;
+    border-radius: 30px;
+    background-color:rgb(134, 241, 134);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.score-info p{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+.score-info{
+    font-size: 20px;
+    position: relative;
+    padding-right: 20px;
+}
+.score-info::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 90%;
+    background-color: #3b82f6;
+    opacity: 0.4;
+}
+.score-desc-box {
+    width: 100%;
+    max-width: 260px;
+    font-size: 17px;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   line-height: 1.2;
+   margin-left: -10px;
+   text-align: left;
+}
+.score-desc-box h4{margin: 0; font-weight: 600; }
+.actionCard h3{margin: 0; text-align: start;}
+.tags{
+    max-height: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+    overflow-y: auto;
+}
+.tags span{
+    padding: 6px 12px;
+    border-radius: 9px;
+    font-size: 18px;
+    
+}
+.tags.success span{
+    background: #b5f5d7;
+    color: #057c57;
+}
+.tags.danger span{
+    background: #f7c9c9;
+    color: #dc2626;
+}
+#toggle-skills,#toggle-missing-skills {
+    margin-bottom: 8px;
+    padding: 6px 12px;
+    border-radius: 9px;
+    font-size: 16px;
+    background: #e0e0e0;
+    color: #333;
+    border: none;
+    cursor: pointer;
+    margin-left: 4px; /* space from tags */
+    height: 36px;     /* same height as tags */
+}
+
+#toggle-skills:hover {
+    background: #cfcfcf;
+}
+.muted{
+    margin-bottom: 7px;
+    color: #6b7280;
+    font-size: 18px;
+}
+.suggestions_list {
+    margin-top: 0;
+    font-size: 17px;
+    line-height: 1.5;
+    list-style: none;
+    padding: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.plan_list{
+    margin-top: 0;
+    font-size: 17px;
+    line-height: 1.5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.rescan-section{
+    margin: 24px 0 32px;
+    padding-top: 20px;
+    border-top: 1px solid #90b5f5ec;
+    text-align: center;
+}
+.rescan-text{ font-size: 15px; color :#4d4d4d; margin-bottom: 12px;}
+#rescan-btn{
+    color: white;
+    font-size: 25px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3b82f6;
+   width: 250px;
+   transition: background-color 0.2s ease, transform 0.1s ease;
+   cursor: pointer;
+}
+#rescan-btn:hover{
+    background-color: rgb(113, 113, 235);
+    transform: translateY(-1px);
+}
+#rescan-btn:active{
+    background-color: rgb(19, 19, 224);
+    transform: translateY(0);
+}
+
+@media (max-width: 604px) {
+ .navbar{
+        width: 100%;
+        height: 65px;
+    }
+    .logo{height: 50px; width: 50px;}
+    .navbar-items {  display: none; }
+    .navbar h1 {  font-size: 1.1rem;}
+
+  .cards-container {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      max-width: 95%;
+      padding: 5px;
+  }
+.matchScoreCard { grid-column: span 1;  width: 85%; justify-self: center;}
+  .eachCard {
+      padding: 10px;
+      border-radius: 15px;
+  }
+  .eachCard:hover{
+    transform: none !important;
+    box-shadow: 0 15px 20px gray;
+    border: none !important;
+}
+  .matchScoreCard .scoreCard {
+        flex-direction: row;       /* keep circle and score info side by side */
+        flex-wrap: wrap;           /* allow "why this score" to move below */
+        justify-content: center;align-items: center;
+        gap: 20px;
+    }
+
+    .matchScoreCard .score-desc-box {
+        width: 100%;               /* full width below circle + score */
+        margin-top: 15px;
+        text-align: center;        /* center explanation */
+        font-size: 16px;
+    }
+
+  .circular-progress {
+      width: 120px;
+      height: 120px;
+      font-size: 30px;
+  }
+
+  .circular-progress::after {
+      width: 90px;
+      height: 90px;
+  }
+
+  .scoreCard {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+  }
+
+  .score-info {
+      font-size: 16px;
+      padding-right: 0;
+  }
+.score-info::after { display: none;  /* removes the vertical separator on mobile */ }
+  .score-info p,
+  .score-info small {
+      font-size: 14px;
+      padding: 5px;
+  }
+
+  .score-desc-box {
+      max-width: 100%;
+      font-size: 14px;
+      line-height: 1.2;
+  }
+  .tags { max-height: 100px; gap: 5px; }
+  .tags span {
+      font-size: 14px;
+      padding: 4px 8px;
+  }
+
+  #toggle-skills,
+  #toggle-missing-skills {
+      font-size: 14px;
+      padding: 4px 8px;
+      height: 30px;
+  }
+
+  .suggestions_list li,
+  .plan_list li {
+      font-size: 14px;
+      line-height: 1.3;
+  }
+
+  .rescan-text {font-size: 13px;}
+
+  #rescan-btn {
+      width: 180px;
+      font-size: 20px;
+      padding: 8px;
+  }
+  .results h1 { font-size: 24px;}
+  .results h3 { font-size: 16px; }
+}
+
+@media (min-width: 605px) and (max-width: 1024px) {
+    .navbar{width: 100%;}
+    .navbar h1{font-size: 20px;}
+    .navbar-items {font-size: 15px;}
+.eachCard:hover{
+    transform: none !important;
+    box-shadow: 0 15px 20px gray;
+    border: none !important;
+}
+    /* Center Match Score Card with half width */
+    .matchScoreCard {
+        grid-column: 1 / -1;   /* take full row in grid */
+        justify-self: center;
+        width: 70%;            /* half width */
+        margin: 0 auto 20px;
+    }
+
+    /* Score card layout: circle + info side by side, why score below */
+    .matchScoreCard .scoreCard {
+        flex-direction: row;   /* circle + info side by side */
+        flex-wrap: wrap;       /* allow why score below */
+        justify-content: center;
+        gap: 15px;
+       
+    }
+
+    .matchScoreCard .score-desc-box {
+        width: 85%;           /* full width below */
+        margin-top: 10px;
+        text-align: center;
+        font-size: 16px;
+         flex-basis: 100%;
+    }
+
+    .circular-progress {
+        width: 150px;
+        height: 150px;
+        font-size: 40px;
+    }
+
+    .circular-progress::after {
+        width: 120px;
+        height: 120px;
+    }
+
+    .score-info {
+        font-size: 16px;
+        padding-right: 0;
+        text-align: left;
+    }
+.score-info::after { display: none;}
+.score-desc-box{font-size: 16px;}
+    /* Cards container: 2 per row for the remaining 4 cards */
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        max-width: 90%;
+        padding: 10px;
+    }
+
+    /* Adjust card paddings and font sizes for tablets */
+    .eachCard {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    /* Tags and text adjustments */
+    .tags span {
+        font-size: 15px;
+        padding: 5px 10px;
+    }
+
+    .muted {
+        font-size: 15px;
+    }
+
+    .suggestions_list li,
+    .plan_list li {
+        font-size: 15px;
+    }
+
+    #rescan-btn {
+        width: 220px;
+        font-size: 22px;
+        padding: 9px;
+    }
+}
+
+@media (min-width: 962px) {
+    .score-info::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1px;
+        height: 90%;
+        background-color: #3b82f6;
+        opacity: 0.4;
+        display: block; /* make it visible */
+    }
+}
+
+/* Media query for screens larger than 1440px */
+@media (min-width: 1441px) {
+    .cards-container {
+        max-width: 1400px; /* slightly wider container */
+        margin: auto;      /* center container */
+        gap: 25px;         /* increase gap between cards */
+    }
+
+    .eachCard {
+        padding: 20px;     /* increase padding for better spacing */
+        font-size: 18px;   /* slightly bigger text */
+    }
+
+    .matchScoreCard {
+        width: 90%;        /* 90% of grid area */
+        margin: 0 auto;    /* center horizontally */
+    }
+
+    .scoreCard {
+        gap: 30px;         /* more space between circular progress and info */
+    }
+
+    .score-desc-box {
+        font-size: 18px;   /* bigger text for "Why this score" */
+    }
+
+    .circular-progress {
+        width: 180px;
+        height: 180px;
+        font-size: 40px;
+    }
+
+    .circular-progress::after {
+        width: 150px;
+        height: 150px;
+    }
+
+    .score-info p,
+    .score-info small {
+        font-size: 18px;
+        padding: 6px;
+    }
+
+    .tags span {
+        font-size: 16px;
+        padding: 6px 14px;
+    }
+
+    #toggle-skills,
+    #toggle-missing-skills {
+        font-size: 16px;
+        padding: 6px 12px;
+        height: 36px;
+    }
+
+    .results h1 {
+        font-size: 32px;
+    }
+    .results h3 {
+        font-size: 20px;
+    }
+
+    #rescan-btn {
+        width: 280px;
+        font-size: 26px;
+        padding: 12px;
+    }
+}
+
+
+
+    
+

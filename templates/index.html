@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResuBoost</title>
+    <link rel="stylesheet" href="\static\index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+           <div class="logo-container">
+        <img src="/static/resuboost-logo.png" class="logo">
+        <h1>ResuBoost</h1>
+        </div> 
+        <li class="navbar-items">
+            <ul><a href="{{ url_for('home') }}">Home</a></ul>
+            <ul><a href="#how-it-works">How it works</a> </ul>
+            <ul><a href="#about">About</a></ul>
+        </li>
+    </nav>
+        <div class="mainCard">
+        <div class="headingCard">
+            <h1>Ready for your Dream job?</h1>
+            <p>See how well your resume fits instantly.</p>
+            <div class="ScannerCard">
+                {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <p id="flash-error" style="color:red; text-align:center; margin-bottom:10px;">
+      {{ messages[0] }}
+    </p>
+  {% endif %}
+{% endwith %}
+                <form id="resumeForm" action="/scan" method="POST" enctype="multipart/form-data"  autocomplete="off">
+                <h3><i class="fa-solid fa-cloud-arrow-up" style="color: #4b7fd8;"></i>Upload Your Resume(PDF)</h3>
+               <div class="file-input-wrapper">
+  <label for="resume" class="custom-file-label">
+    <span id="file-name">Choose PDF</span>
+    <span id="remove-file" style="display:none; cursor:pointer; color: red; font-size: 40px;">&times;</span>
+  </label>
+  <input type="file" id="resume" name="resume" class="resume_pdf"  accept=".pdf" autocomplete="off">
+</div>
+
+                <h3>Paste Job Description</h3>
+                <textarea name="job_desc" class="job_desc" placeholder="E.g. Looking for a software developer with skills in Python,machine learning, and data analysis...">{{ jd_text | default('') }}</textarea>
+                <button type="submit" id="scan-btn"disabled>Scan Resume</button>
+                <p id="helper-text" class="helper-text">
+                  Please upload a resume and enter a job description.
+                </p>
+            </form>
+           </div>
+           <div id="loader" style="display:none;">
+    <div class="loader-content">
+        <div class="spinner"></div>
+        <p>Scanning your resume, please wait...</p>
+    </div>
+</div>
+
+
+        </div>
+        <div class="FeaturesCard">
+            <div class="feature-img">
+                <img src="/static/heroImg.png" id="hero-img"></div>
+            <div class="features-div">
+            <h1><i class="fa-solid fa-circle-check" style="color: #4b7fd8;"></i> Quick , Accurate & Free</h1>
+            <p> <i class="fa-solid fa-check" style="color: #4b7fd8;"></i><b>Fast Matching.</b> Gets instant feedback on how well your resume matches the job description.</p>
+            <p><i class="fa-solid fa-check" style="color: #4b7fd8;"></i><b>Skill Gap Analysis.</b> Identify missing skills to improve your resume for job match.</p>
+            <p><i class="fa-solid fa-check" style="color: #3872d6;"></i><b>User-Friendly.</b> Simple and intuitive interface that's easy to use,even for non-technical users.</p>
+            </div>
+        </div>
+    </div>
+  
+    <section id="about">
+       <h2 class="aboutTitle"><i class="fa-solid fa-circle-info"></i>About</h2>
+        <div class="aboutcards">
+            <div class="aboutInfo">
+        <p>AI Resume Scanner is designed to help job seekers optimize their resumes leveraging advanced AI technology.
+             Our platform analyzes your resume against job descriptions,offering quick and actionable feedback to improve your job match.
+           <br> Whether you're a recent graduate,a professional looking for a career change,re-entering the workforce, our tool makes it easy and free to enhance your resume.</p>
+        </div>
+        <div class="aboutImgs">
+            <img src="/static/aboutImg.jpeg" class="aboutImg">
+        </div>
+        </div>
+    </section>
+
+    <section id="how-it-works">
+        <h2><i class="fa-solid fa-gears"></i> How it works</h2>
+        <hr>
+        <div class="steps" >
+            <div class="step" data-index="0">
+                <h3>Upload resume</h3>
+                <img src="/static/step 1.jpeg" class="stepsImg">
+                <p>Upload your resume in pdf format & add job description.</p>
+            </div>
+            <div class="step" data-index="1">
+                <h3>AI Analysis</h3>
+                <img src="/static/step 2.jpeg" class="stepsImg">
+                <p>AI scan skills, experience, and keywords.</p>
+            </div>
+            <div class="step" data-index="2">
+                <h3>Match Score</h3>
+                <img src="/static/step 3.jpeg" class="stepsImg">
+                <p>The system calculates a match score with the job.</p>
+            </div>
+            <div class="step" data-index="3">
+                <h3>Smart Feedback</h3>
+                <img src="/static/step 4.jpeg" class="stepsImg">
+                <p>Get tips on missing skills and keywords.</p>
+            </div>
+            <div class="step" data-index="4">
+                <h3>Results Dashboard</h3>
+                <img src="/static/step 5.jpeg" class="stepsImg">
+                <p>View all results in a simple dashboard.</p>
+            </div>
+        </div>
+        <div class="timeline">
+            <span class="dot" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+            <span class="dot" data-index="4"></span>
+        </div>
+    </section>
+
+     
+<script src="{{ url_for('static', filename='index.js') }}"></script>
+
+
+</body>
+</html>
+

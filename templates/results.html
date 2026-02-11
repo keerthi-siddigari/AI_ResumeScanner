@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResuBoost Results</title>
+    <link rel="stylesheet" href="\static\results.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+       <div class="logo-container">
+        <img src="/static/resuboost-logo.png" class="logo">
+        <h1>ResuBoost</h1>
+        </div> 
+        <li class="navbar-items">
+            <ul><a href="{{ url_for('home') }}">Home</a></ul>
+            <ul><a href="{{ url_for('home') }}#how-it-works">How it works</a> </ul>
+            <ul><a href="{{ url_for('home') }}#about">About</a></ul>
+        </li>
+    </nav>
+
+ <section class="results">
+    <h1>Resume Scan Results</h1>
+    <h3>Here is a detailed analysis of your resume based on the job description provided.</h3>
+   
+      
+    <div  class="cards-container">
+        <div class="eachCard matchScoreCard ">
+            <h2><i class="fa-solid fa-circle-check"style="color: #4b7fd8;"></i> Match Score</h2>
+            <div class="scoreCard">
+                <div class="circular-progress" style="--score: {{score}};">
+                    <span>{{score}}%</span>
+                </div>
+                <div class="score-info" >
+                    
+                       <small>Good Match</small>
+                    
+                      <p><b>Skills:</b>{{ section_scores['skills'] }}/10</p>
+                      <p><b>Experience:</b>{{ section_scores['experience'] }}/10</p>
+                      <p><b>Certifications:</b>{{ section_scores['certifications'] }}/10</p>
+                       <p><b>Objective:</b>{{ section_scores['objective'] }}/10</p>
+                     
+               </div>
+               <div class="score-desc-box">
+                  <h4>Why this score?</h4>
+                 <p>{{why_score_text}} </p>
+                 </div>
+
+            </div>
+       </div>
+        <div  class="eachCard missingskillsCard">
+          <h2><i class="fa-solid fa-circle-exclamation"style="color: #4b7fd8;"></i>Missing Skills</h2>
+         <p class="muted">Consider learning these skills to enhance your match score.</p>
+           <div class="tags danger" id="missing-skills-container" data-skills="{{ missing_display }}"></div>
+           <button id="toggle-missing-skills" class="tag-toggle"></button>
+        </div>
+        <div class="eachCard suggestionsCard" >
+            <h2><i class="fa-solid fa-lightbulb" style="color: #4b7fd8;"></i>Resume Suggestions</h2>
+            <p class="muted">Improve your resume presentation</p>
+            <ul class="suggestions_list">
+                    {% for suggestion in suggestions %}
+                        <li><i class="fa-solid fa-check" style="color: #4b7fd8;"></i> {{ suggestion }}</li>
+                    {% endfor %}
+                </ul>
+        </div>
+        
+        
+        <div class="eachCard keywordsCard">
+            <h2><i class="fa-solid fa-award"style="color: #4b7fd8;"></i>Skills & Keywords Matched</h2>
+                <div class="tags success" id="skills-container" 
+              data-skills="{{ matched_display }}">
+             </div>
+             <button id="toggle-skills">...</button>
+        </div>
+        
+        <div  class="eachCard actionCard">
+            <h2><i class="fa-regular fa-clipboard"style="color: #4b7fd8;" ></i>Action plan<small> (Skills to learn)</small></h2>
+           <p class="muted">Ways to improve your missing skills.</p>
+            
+            {% if action_plan is string %}
+        <p>{{ action_plan }}</p>
+        {% else %}
+        {% for skill, steps in action_plan.items() %}
+            <h3>{{ skill }}:</h3>
+            <ol class="plan_list">
+                {% for step in steps %}
+                    <li>{{ step }}</li>
+                {% endfor %}
+            </ol>
+        {% endfor %}
+       {% endif %}
+        </div>
+   </section>  
+   <section class="rescan-section">
+     <p class= "rescan-text">Want to improve your match score? 
+     Update your resume and rescan to see changes instantly.
+    </p>
+    <button id="rescan-btn" data-jd="{{ jd_text | default('') }}">Rescan resume</button>
+   </section> 
+   <script src="/static/results.js"></script>  
+</body>
+</html>
